@@ -1,0 +1,19 @@
+% question2
+%% 1 load and plot the data
+clear, clc,  close all
+data=load('faithful.txt');
+x=data(:,1); %duration
+y=data(:,2); %time to next eruption
+m=length(y); % number of training examples
+% plot the data
+figure(1)
+plot(x,y,'rx','MarkerSize', 12);
+xlabel('duration of eruption, Minutes'), ylabel('Time until next eruption, Minutes')
+title('Duration of Eruption vs. Time to next Eruption'), grid, hold on % overlay data
+
+
+%% 2
+X=[ones(m,1) x]; %add x0
+num_iterations=2000;
+alpha=5e-6;
+theta=zeros(2,1);
