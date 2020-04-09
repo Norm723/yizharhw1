@@ -22,8 +22,15 @@ fprintf('%f %f \n', theta(1), theta(2));
 %legend('Training data', 'Linear regression (gd)')
 %hold off;
 
-%% 2
+%% 2 predict the cost of a house with 1800 sf and 5 rooms
 newHouse = [1800, 5];
 newNorm = data_normalization(newHouse);
 predict1=[1 newNorm]*theta;
-fprintf('For House with 1800 sf and 5 rooms,the predicted cost is $%f \n', predict1);
+fprintf('For House with 1800 sf and 5 rooms,the predicted cost is $%.2f \n', predict1);
+
+%% 3 Analytical linear model
+theta_analytical = (X'*X)^(-1)*X'*y;
+fprintf('Theta Analytical linear model: ')
+fprintf('%f %f \n', theta_analytical(1), theta_analytical(2));
+predict2=[1 newNorm]*theta_analytical;
+fprintf('For House with 1800 sf and 5 rooms,the predicted cost is $%.2f \n', predict2);
