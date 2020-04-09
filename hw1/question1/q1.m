@@ -11,7 +11,7 @@ plot(x,y,'rx','MarkerSize', 12);
 xlabel('Ground Temperature,F'), ylabel('frequency,Hz')
 title('freq vs. Temp'), grid, hold on % overlay data
 
-% 2 Analytical linear model
+%% 2 Analytical linear model
 X=[ones(m,1) x]; %add x0
 theta_analytical = (X'*X)^(-1)*X'*y;
 %figure(2)
@@ -21,7 +21,7 @@ theta_analytical = (X'*X)^(-1)*X'*y;
 %plot(x ,X*theta_analytical);
 
 
-% 3 gradient descent (on-line/stochastic)
+%% 3 gradient descent (on-line/stochastic)
 % initializations
 num_iterations=2500;
 alpha=5e-6;
@@ -37,9 +37,9 @@ legend('Training data', 'Linear regression (gd)')
 hold off;
 
 %% 4 and 5 Predict frequency values for temperatures of 91,77 and 50 degrees
-predict1=[1 93.3]*theta;
+predict1=[1 91]*theta;
 fprintf('For temperature = 91 degrees, we predict a freq of %f Hz \n', predict1);
 predict2=[1 77]*theta;
-fprintf('For temperature = 65 degrees, we predict a freq of %f Hz \n', predict2);
+fprintf('For temperature = 77 degrees, we predict a freq of %f Hz \n', predict2);
 predict3=[1 50]*theta;
 fprintf('For temperature = 50 degrees, we predict a freq of %f Hz \n', predict3);
