@@ -13,9 +13,32 @@ plot(x,y,'k.','MarkerSize', 8);
 xlabel('log of mass'), ylabel('log of metabolic rate')
 title('log of mass vs. log of metabolic rate'), grid, hold on % overlay data
 
-%% 2 linear model
-X = [ones(samples,1) x]
+%% 2 and 3 linear model and non-linear function
+%log_htheta = X*theta; %wherein X already is log(x)
+%htheta = exp(log_htheta);
+%can also be expressed as: htheta = theta0*year^theta1 
+
+%for testing the model is ok
+X = [ones(samples,1) x];
 theta_analytical = (X'*X)^(-1)*X'*y;
+
 plot(x ,X*theta_analytical);
 
-%% 3
+%X = [ones(samples,1) exp(x)]; %add x0 and get rid of log
+%num_iterations=2000;
+%alpha=0.01;
+%theta=zeros(params+1,1); %number of params + theta0, could also have done size(X, 2)
+% run gradient descent
+%[theta,J]=gradientDescent(X,exp(y),theta, alpha,num_iterations, 0);
+% print theta to screen
+%fprintf('Theta found by gradient descent: ')
+%fprintf('%f %f \n', theta(1), theta(2));
+
+%% 4 predicted calories for a mammal weighing 15 kg
+predict1= (exp(theta_analytical(1)).*15 .^theta_analytical(2))/4.18;
+fprintf('predicted calories for a mammal weighing 15 kg is %.2f \n', predict1);
+
+%%5
+kj= 1.63;%kjoul
+kg=(kj/exp(theta(1))).^(1/theta(2));
+fprintf('mammle weight that consomes %f kjoul per day is : %i kg\n',kj,kg);

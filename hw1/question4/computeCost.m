@@ -12,8 +12,7 @@ function J = computeCost(X, y, theta)
 
 % Initialization
 m = length(y); % number of training examples
-
-delta=(X*theta)-y;
+delta=exp(X*theta)-y;
 
 J = sum(delta.^2)/(2*m);
 end

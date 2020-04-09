@@ -13,6 +13,25 @@ plot(x,y,'k.','MarkerSize', 8);
 xlabel('log of mass'), ylabel('log of metabolic rate')
 title('log of mass vs. log of metabolic rate'), grid, hold on % overlay data
 
-%% 2 linear model
-X = (ones() )
+%% 2 and 3 linear model and non-linear function
+%log_htheta = X*theta; %wherein X already is log(x)
+%htheta = exp(log_htheta);
+%can also be expressed as: htheta = theta0*year^theta1 
+
+%for testing the model is ok
+X = [ones(samples,1) x];
 theta_analytical = (X'*X)^(-1)*X'*y;
+
+plot(x ,X*theta_analytical);
+
+%X = [ones(samples,1) exp(x)]; %add x0 and get rid of log
+%num_iterations=2000;
+%alpha=0.01;
+%theta=zeros(params+1,1); %number of params + theta0, could also have done size(X, 2)
+% run gradient descent
+%[theta,J]=gradientDescent(X,exp(y),theta, alpha,num_iterations, 0);
+% print theta to screen
+%fprintf('Theta found by gradient descent: ')
+%fprintf('%f %f \n', theta(1), theta(2));
+
+%% 4
