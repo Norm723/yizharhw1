@@ -34,4 +34,10 @@ plot(x ,X*theta_analytical);
 %fprintf('Theta found by gradient descent: ')
 %fprintf('%f %f \n', theta(1), theta(2));
 
-%% 4
+%% 4 predicted calories for a mammal weighing 15 kg
+predict1= (exp(theta_analytical(1)).*15 .^theta_analytical(2))/4.18;
+fprintf('predicted calories for a mammal weighing 15 kg is %.2f \n', predict1);
+
+%%5
+kilos=(2.5/exp(theta(1))).^(1/theta(2));
+fprintf('estimated weight weight that consomes %f kjoul per day is : %i kg\n',kj,kg);

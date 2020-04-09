@@ -39,6 +39,5 @@ predict1= (exp(theta_analytical(1)).*15 .^theta_analytical(2))/4.18;
 fprintf('predicted calories for a mammal weighing 15 kg is %.2f \n', predict1);
 
 %%5
-kj= 1.63;%kjoul
-kg=(kj/exp(theta(1))).^(1/theta(2));
-fprintf('mammle weight that consomes %f kjoul per day is : %i kg\n',kj,kg);
+kilos=(2.5/exp(theta_analytical(1))).^(1/theta_analytical(2));
+fprintf('estimated weight for a mammal that needs 2.5 kJoul per day is : %i kilograms\n',kilos);

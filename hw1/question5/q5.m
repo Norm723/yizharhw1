@@ -1,6 +1,6 @@
 % question 5
-%% 1 after trial and error I recieved a linear function using log y
-% as the folling graph shows
+%% 1 after trial and error I recieved a linear connection by using log y
+% as the following graph shows
 clear, clc,  close all
 data=csvread('transistor_counts.csv',1,0);
 samples = size(data, 1); %number of samples
