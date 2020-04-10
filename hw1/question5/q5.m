@@ -1,6 +1,7 @@
 % question 5
-%% 1 after trial and error I recieved a linear connection by using log y
-% as the following graph shows
+%% 1 the transformation is as follows
+%we can see that there is exponential growth in the number of transistors
+%the growth is given by the funtion: log(y) = x*theta'
 clear, clc,  close all
 data=csvread('transistor_counts.csv',1,0);
 samples = size(data, 1); %number of samples
@@ -26,10 +27,10 @@ y2 = (data(:, params+1));
 figure(2)
 plot(x,y2,'k.','MarkerSize', 8);
 xlabel('year'), ylabel('number of transistors')
-X = X*exp(1);
+%X = X*exp(1);
 title('year vs. number of transistors'), grid, hold on % overlay data
-theta_analytical = (X'*X)^(-1)*X'*y2;
-plot(x ,X*theta_analytical);
+%theta_analytical = (X'*X)^(-1)*X'*y2;
+plot(x , exp(X*theta_analytical)); %simply take e to power of result of hypothesis, because hypothesis is log of desired result
 hold off
 
 %% 3 predict the number of transistors in 2018
