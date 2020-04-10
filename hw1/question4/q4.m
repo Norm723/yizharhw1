@@ -25,7 +25,7 @@ title('log of mass vs. log of metabolic rate'), grid, hold on % overlay data
 X = [ones(samples,1) x];
 theta_analytical = (X'*X)^(-1)*X'*y;
 
-plot(x ,X*theta_analytical, 'g');
+plot(x ,X*theta_analytical, '-g');
 
 %X = [ones(samples,1) exp(x)]; %add x0 and get rid of log
 num_iterations=2000;
@@ -34,16 +34,17 @@ theta=zeros(params+1,1); %number of params + theta0, could also have done size(X
 % run gradient descent
 [theta,J]=gradientDescent(X,y,theta, alpha,num_iterations, 0);
 figure(1)
-plot(x ,X*theta);
+plot(x ,X*theta, '-r');
+legend('Training data', 'Analytical linear model', 'Linear regression (gd)')
 hold off
 % print theta to screen
 fprintf('Theta found by gradient descent: ')
 fprintf('%f %f \n', theta(1), theta(2));
 
 %% 4 predicted calories for a mammal weighing 15 kg
-predict1= (exp(theta_analytical(1)).*15 .^theta_analytical(2))/4.18;
+predict1= (exp(theta(1)).*15 .^theta(2))/4.18;
 fprintf('predicted calories for a mammal weighing 15 kg is %.2f \n', predict1);
 
 %%5
-kilos=(2.5/exp(theta_analytical(1))).^(1/theta_analytical(2));
+kilos=(2.5/exp(theta(1))).^(1/theta(2));
 fprintf('estimated weight for a mammal that needs 2.5 kJoul per day is : %i kilograms\n',kilos);
