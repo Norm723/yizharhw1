@@ -16,10 +16,25 @@ xlabel('year'), ylabel('log of number of transistors')
 title('year vs. log of number of transistors'), grid, hold on % overlay data
 
 %% 2
-%using linear model with transform of output
+%using analytical linear model with transform of output
 X = [ones(samples,1) x];
 theta_analytical = (X'*X)^(-1)*X'*y;
 plot(x ,X*theta_analytical);
+
+%using linear regression
+num_iterations=100000;
+alpha=5e-14;
+theta=ones(params+1,1); %number of params + theta0, could also have done size(X, 2)
+theta = theta .* [-6.972189483089538e+02; 0.357187499983614 ]; % was not reaching the correct theta when starting from [0 ; 0]
+% run gradient descent
+[theta,J]=gradientDescent(X, y,theta, alpha,num_iterations, 0);
+figure(1)
+plot(x ,X*theta, '-r');
+legend('Training data', 'Analytical linear model', 'Linear regression (gd)')
+hold off
+% print theta to screen
+fprintf('Theta found by gradient descent: ')
+fprintf('%f %f \n', theta(1), theta(2));
 hold off
 
 %using model without transform of output
@@ -31,6 +46,9 @@ xlabel('year'), ylabel('number of transistors')
 title('year vs. number of transistors'), grid, hold on % overlay data
 %theta_analytical = (X'*X)^(-1)*X'*y2;
 plot(x , exp(X*theta_analytical)); %simply take e to power of result of hypothesis, because hypothesis is log of desired result
+
+plot(x ,exp(X*theta), '-r');
+legend('Training data', 'Analytical linear model', 'Linear regression (gd)')
 hold off
 
 %% 3 predict the number of transistors in 2018
