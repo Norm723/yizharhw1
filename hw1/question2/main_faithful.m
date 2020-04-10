@@ -15,7 +15,7 @@ title('Duration of Eruption vs. Time to next Eruption'), grid, hold on % overlay
 %% 2 gradient descent
 X=[ones(m,1) x]; %add x0
 num_iterations=2000;
-alpha=0.01;
+alpha=0.001;
 theta=zeros(2,1);
 % run gradient descent
 [theta,J]=gradientDescent(X,y,theta, alpha,num_iterations, 0);
@@ -50,6 +50,7 @@ for i = 1:length(theta0)
     end
 end
 % contour plot using a logarithmic scale
+figure(3)
 contour(theta0, theta1, J, logspace(-2, 7, 35))
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;

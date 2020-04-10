@@ -29,7 +29,7 @@ plot(x ,X*theta_analytical, 'g');
 
 %X = [ones(samples,1) exp(x)]; %add x0 and get rid of log
 num_iterations=2000;
-alpha=0.03;
+alpha=3e-5;
 theta=zeros(params+1,1); %number of params + theta0, could also have done size(X, 2)
 % run gradient descent
 [theta,J]=gradientDescent(X,y,theta, alpha,num_iterations, 0);
@@ -41,9 +41,9 @@ fprintf('Theta found by gradient descent: ')
 fprintf('%f %f \n', theta(1), theta(2));
 
 %% 4 predicted calories for a mammal weighing 15 kg
-predict1= (exp(theta(1)).*15 .^theta(2))/4.18;
+predict1= (exp(theta_analytical(1)).*15 .^theta_analytical(2))/4.18;
 fprintf('predicted calories for a mammal weighing 15 kg is %.2f \n', predict1);
 
 %%5
-kilos=(2.5/exp(theta(1))).^(1/theta(2));
+kilos=(2.5/exp(theta_analytical(1))).^(1/theta_analytical(2));
 fprintf('estimated weight for a mammal that needs 2.5 kJoul per day is : %i kilograms\n',kilos);

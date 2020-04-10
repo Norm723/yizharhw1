@@ -16,6 +16,7 @@ end
 
 figure(2)
 plot(1:num_iterations, J);
+xlabel('iterations'), ylabel('J')
 
 end
 
