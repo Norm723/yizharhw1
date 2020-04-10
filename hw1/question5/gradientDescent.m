@@ -14,9 +14,9 @@ while e>=epsilon && i<num_iterations
     i = i +1;
 end
 
-figure(3)
-plot(1:num_iterations, J);
-xlabel('iterations'), ylabel('J')
+%figure(3)
+%plot(1:num_iterations, J);
+%xlabel('iterations'), ylabel('J')
 
 end
 

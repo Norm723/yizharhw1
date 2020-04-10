@@ -3,7 +3,7 @@
 %we can see that there is exponential growth in the number of transistors
 %the growth is given by the funtion: log(y) = x*theta'
 clear, clc,  close all
-data=csvread('transistor_counts.csv',1,0);
+data=csvread('transistor_counts.csv',0,0);
 samples = size(data, 1); %number of samples
 params = size(data, 2) - 1; %size without y value
 x = (data(:, 1:params));
@@ -19,13 +19,16 @@ title('year vs. log of number of transistors'), grid, hold on % overlay data
 %using analytical linear model with transform of output
 X = [ones(samples,1) x];
 theta_analytical = (X'*X)^(-1)*X'*y;
+figure(1)
 plot(x ,X*theta_analytical);
+fprintf('Theta found by analytical: ')
+fprintf('%f %f \n', theta_analytical(1), theta_analytical(2));
 
 %using linear regression
 num_iterations=100000;
 alpha=5e-14;
 theta=ones(params+1,1); %number of params + theta0, could also have done size(X, 2)
-theta = theta .* [-6.972189483089538e+02; 0.357187499983614 ]; % was not reaching the correct theta when starting from [0 ; 0]
+theta = theta .* [-6.935534899819442e+02; 0.3554 ]; % was not reaching the correct theta when starting from [0 ; 0]
 % run gradient descent
 [theta,J]=gradientDescent(X, y,theta, alpha,num_iterations, 0);
 figure(1)
@@ -35,7 +38,6 @@ hold off
 % print theta to screen
 fprintf('Theta found by gradient descent: ')
 fprintf('%f %f \n', theta(1), theta(2));
-hold off
 
 %using model without transform of output
 y2 = (data(:, params+1));
