@@ -34,5 +34,5 @@ plot(x , exp(X*theta_analytical)); %simply take e to power of result of hypothes
 hold off
 
 %% 3 predict the number of transistors in 2018
-predict=[1 2018]*theta_analytical;
+predict=exp([1 2018]*theta_analytical);
 fprintf('The predicted number of transistors in 2018 is is %i \n', predict);
