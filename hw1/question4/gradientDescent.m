@@ -7,7 +7,7 @@ e = epsilon + 1;
 i = 2;
 while e>=epsilon && i<num_iterations 
     for m = 1: size(y,1)
-        theta = theta + (alpha*(y(m) - exp((X(m, :)*theta))).*X(m, :))'; 
+        theta = theta + (alpha*(y(m) - (X(m, :)*theta)).*X(m, :))'; 
     end
     J(i) = computeCost(X, y, theta);
     e = J(i-1) - J(i);
